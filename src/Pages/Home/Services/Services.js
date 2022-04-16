@@ -29,11 +29,11 @@ const Services = () => {
                         <Card.Title>FAST TRACK</Card.Title>
                         <h5>$200<span>/week</span></h5>
                         <Card.Text>
-                            If you strive for real results and want to receive the guidance you need to set yourself up for success.then this is the package for you You'll be working with me directly and checking in twice a week.We'll fast track your progress and make necessary changes to ensure your commit
+                            If you strive for real results and want to receive the guidance you need to set yourself up for success.then this is the package for you You'll be working with me directly and checking in twice a week.We'll fast track your progress and make necessary changes to ensure your commit.
                         </Card.Text>
                     </Card.Body>
                     <div className='text-center'>
-                       <button className='py-2 px-5 border rounded-2 bg-info mb-3'>Checked</button>
+                       <button onClick={()=>navigate('/fasttrackdetail')} className='py-2 px-5 border rounded-2 bg-info mb-3'>Checked</button>
                        </div>
 
                 </Card>

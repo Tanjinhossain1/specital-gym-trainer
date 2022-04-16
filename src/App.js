@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Pages/Home/Home/Home';
 import Footer from './Pages/Sheard/Footer/Footer';
 import AccountabilityCheckedOut from './Pages/Home/AccountabilityCheckedOut/AccountabilityCheckedOut';
+import FastTrackDetail from './Pages/Home/FastTrackDetail/FastTrackDetail';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
         <Route path='/accountabilitycheckedout' element={<AccountabilityCheckedOut></AccountabilityCheckedOut>}></Route>
+        <Route path='/fasttrackdetail' element={<FastTrackDetail></FastTrackDetail>}></Route>
         
       </Routes>
       <Footer></Footer>

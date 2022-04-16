@@ -5,7 +5,7 @@ const AccountabilityCheckedOut = () => {
     
     return (
         <div>
-            <CardGroup className='w-50 mx-auto card-group'>
+            <CardGroup className='w-50 mx-auto card-group mt-5'>
                 <Card className='m-4'>
                     <Card.Img  variant="top"  src="https://gymgeek.com/wp-content/uploads/2015/12/man-and-woman-in-gym-triceps-extensions-700x465.jpg" />
                     <Card.Body>
