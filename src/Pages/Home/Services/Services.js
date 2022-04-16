@@ -1,7 +1,9 @@
 import React from 'react';
 import { Card, CardGroup } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import './Services.css'
 const Services = () => {
+    const navigate = useNavigate();
     return (
         <div>
             <h1 className='text-center text-primary mt-5'>Personal Online Trainer</h1>
@@ -16,7 +18,7 @@ const Services = () => {
                             <p>if you are confident in the hows and whys of training and have a pretty solid knowledge of nutrition and training.this package is for you. You're confident in the gym and want the extra push from me. you want to be ad part of an awesome mind.</p>
                         </Card.Text>
                        <div className='text-center'>
-                       <button className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
+                       <button onClick={()=>navigate('/accountabilitycheckedout')} className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
                        </div>
                     </Card.Body>
                 </Card>
