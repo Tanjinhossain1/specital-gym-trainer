@@ -4,9 +4,6 @@
     position: static;
 
 }
-
-
-
 .pointer {
     cursor: pointer;
 }
@@ -30,4 +27,7 @@
         display: grid;
         grid-template-columns: repeat(3, 1fr);
     }
+}
+.symbol{
+    font-size: 30px;
 }
