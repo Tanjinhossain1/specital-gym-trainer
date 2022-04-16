@@ -1,11 +1,12 @@
 import React from 'react';
 import { Card, CardGroup } from 'react-bootstrap';
-
+import './Services.css'
 const Services = () => {
     return (
         <div>
             <h1 className='text-center text-primary mt-5'>Personal Online Trainer</h1>
-            <CardGroup className='w-75 mx-auto'>
+           <div className=''>
+           <CardGroup className='w-75 mx-auto card-group'>
                 <Card className='m-4'>
                     <Card.Img variant="top" src="https://gymgeek.com/wp-content/uploads/2015/12/man-and-woman-in-gym-triceps-extensions-700x465.jpg" />
                     <Card.Body>
@@ -13,6 +14,9 @@ const Services = () => {
                         <Card.Text>
                             <p>if you are confident in the hows and whys of training and have a pretty solid knowledge of nutrition and training.this package is for you. You're confident in the gym and want the extra push from me. you want to be ad part of an awesome mind.</p>
                         </Card.Text>
+                       <div className='text-center'>
+                       <button className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
+                       </div>
                     </Card.Body>
                 </Card>
 
@@ -24,6 +28,9 @@ const Services = () => {
                             If you strive for real results and want to receive the guidance you need to set yourself up for success.then this is the package for you You'll be working with me directly and checking in twice a week.We'll fast track your progress and make necessary changes to ensure your commit
                         </Card.Text>
                     </Card.Body>
+                    <div className='text-center'>
+                       <button className='py-2 px-5 border rounded-2 bg-info mb-3'>Checked</button>
+                       </div>
 
                 </Card>
 
@@ -37,7 +44,9 @@ const Services = () => {
                             The ultimate life transformation journey package requires a 8 month commitment. i'm looking for change to their health and life
                         </Card.Text>
                     </Card.Body>
-
+                    <div className='text-center mb-3'>
+                       <button className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
+                       </div>
                 </Card>
 
                 <Card className='m-4'>
@@ -48,9 +57,12 @@ const Services = () => {
                             Do you Want the ultimate result? Do you want a 12 week package that you can sustain that will give you the healthy benefits you crave.Do you want to learn how to achieve the body of your dreams and keep it so come.
                         </Card.Text>
                     </Card.Body>
-
+                    <div className='text-center mb-3'>
+                       <button className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
+                       </div>
                 </Card>
             </CardGroup>
+           </div>
         </div>
     );
 };
