@@ -7,6 +7,7 @@ import Footer from './Pages/Sheard/Footer/Footer';
 import AccountabilityCheckedOut from './Pages/Home/AccountabilityCheckedOut/AccountabilityCheckedOut';
 import FastTrackDetail from './Pages/Home/FastTrackDetail/FastTrackDetail';
 import UltimateDetail from './Pages/Home/UltimateDetail/UltimateDetail';
+import LifeTransformCheckout from './Pages/Home/LifeTransformCheckout/LifeTransformCheckout';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/accountAbilityCheckout' element={<AccountabilityCheckedOut></AccountabilityCheckedOut>}></Route>
         <Route path='/fastTrackDetail' element={<FastTrackDetail></FastTrackDetail>}></Route>
         <Route path='/ultimateDetail' element={<UltimateDetail></UltimateDetail>}></Route>
+        <Route path='/lifeTransformCheckout' element={<LifeTransformCheckout></LifeTransformCheckout>}></Route>
         
       </Routes>
       <Footer></Footer>

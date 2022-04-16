@@ -58,13 +58,13 @@ const Services = () => {
                     <Card.Img variant="top" src="https://www.westend61.de/images/0000783991pw/group-of-people-in-gym-training-weight-lifting-HAPF01589.jpg" />
                     <Card.Body>
                         <Card.Title>6 Month Ultimate Life Transformation</Card.Title>
-                        <h5>$499<small>/Month</small></h5>
+                        <h5>$499<small>/Month</small></h5>LifeTransformCheckout
                         <Card.Text>
                             Do you Want the ultimate result? Do you want a 6 month package that you can sustain that will give you the healthy benefits you crave.Do you want to learn how to achieve the body of your dreams and keep it so come.
                         </Card.Text>
                     </Card.Body>
                     <div className='text-center mb-3'>
-                       <button className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
+                       <button onClick={()=>navigate('/lifeTransformCheckout')} className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
                        </div>
                 </Card>
             </CardGroup>
