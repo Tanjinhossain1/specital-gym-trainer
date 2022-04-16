@@ -6,7 +6,7 @@ const header = () => {
     return (
         <Navbar sticky='top' collapseOnSelect expand="lg" bg="dark" variant="dark">
             <Container>
-                <Navbar.Brand href="#home">Gym-Trainer</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/home">Gym-Trainer</Navbar.Brand>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">                                                     

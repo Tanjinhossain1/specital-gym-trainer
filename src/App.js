@@ -8,6 +8,8 @@ import AccountabilityCheckedOut from './Pages/Home/AccountabilityCheckedOut/Acco
 import FastTrackDetail from './Pages/Home/FastTrackDetail/FastTrackDetail';
 import UltimateDetail from './Pages/Home/UltimateDetail/UltimateDetail';
 import LifeTransformCheckout from './Pages/Home/LifeTransformCheckout/LifeTransformCheckout';
+import SignUp from './Pages/Login/SignUp/SignUp';
+import Login from './Pages/Login/Login/Login';
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
         <Route path='/fastTrackDetail' element={<FastTrackDetail></FastTrackDetail>}></Route>
         <Route path='/ultimateDetail' element={<UltimateDetail></UltimateDetail>}></Route>
         <Route path='/lifeTransformCheckout' element={<LifeTransformCheckout></LifeTransformCheckout>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/signup' element={<SignUp></SignUp>}></Route>
         
       </Routes>
       <Footer></Footer>
