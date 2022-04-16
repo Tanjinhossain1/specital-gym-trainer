@@ -18,7 +18,7 @@ const Services = () => {
                             <p>if you are confident in the hows and whys of training and have a pretty solid knowledge of nutrition and training.this package is for you. You're confident in the gym and want the extra push from me. you want to be ad part of an awesome mind.</p>
                         </Card.Text>
                        <div className='text-center'>
-                       <button onClick={()=>navigate('/accountabilitycheckedout')} className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
+                       <button onClick={()=>navigate('/accountAbilityCheckout')} className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
                        </div>
                     </Card.Body>
                 </Card>
@@ -33,7 +33,7 @@ const Services = () => {
                         </Card.Text>
                     </Card.Body>
                     <div className='text-center'>
-                       <button onClick={()=>navigate('/fasttrackdetail')} className='py-2 px-5 border rounded-2 bg-info mb-3'>Checked</button>
+                       <button onClick={()=>navigate('/fastTrackDetail')} className='py-2 px-5 border rounded-2 bg-info mb-3'>Checked</button>
                        </div>
 
                 </Card>
@@ -50,7 +50,7 @@ const Services = () => {
                         </Card.Text>
                     </Card.Body>
                     <div className='text-center mb-3'>
-                       <button className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
+                       <button onClick={()=>navigate('/ultimateDetail')} className='py-2 px-5 border rounded-2 bg-info'>Checked</button>
                        </div>
                 </Card>
 
