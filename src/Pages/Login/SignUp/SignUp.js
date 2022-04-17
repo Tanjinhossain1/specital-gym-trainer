@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
-import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.int';
 import { async } from '@firebase/util';
 import { Spinner } from 'react-bootstrap';
@@ -22,8 +22,10 @@ const SignUp = () => {
 
     const [passwordError, setPasswordError] = useState('');
     const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
+    const [signInWithFacebook, facebookUser] = useSignInWithFacebook(auth);
+      const [signInWithGithub, gitHubUser] = useSignInWithGithub(auth);
 
-    if (user || googleUser) {
+      if(user || googleUser || facebookUser || gitHubUser){
         navigate('/home')
     }
     const handleToSubmit = async (event) => {
@@ -84,9 +86,9 @@ const SignUp = () => {
                                 <img onClick={() => signInWithGoogle()} width={100} className='rounded-pill pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY4fEq7Y5RS5LgBJpkLQ7SqiIVDImxmRQI2WFHHkr6WYPQEtDXPaueCbakGkixOD6xoLk&usqp=CAU" alt="" />
 
 
-                                <img width={80} className='ms-4 pointer' src="https://seeklogo.com/images/F/facebook-icon-circle-logo-09F32F61FF-seeklogo.com.png" alt="" />
+                                <img onClick={()=>signInWithFacebook()} width={80} className='ms-4 pointer' src="https://seeklogo.com/images/F/facebook-icon-circle-logo-09F32F61FF-seeklogo.com.png" alt="" />
 
-                                <img width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
+                                <img onClick={()=>signInWithGithub()} width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
                             </div>
                         </div>
                     </form>

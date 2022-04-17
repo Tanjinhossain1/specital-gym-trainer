@@ -1,7 +1,7 @@
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.int';
 
@@ -16,11 +16,12 @@ const Login = () => {
       const navigate = useNavigate();
       const [signInWithGoogle,googleUser,googleLoading] = useSignInWithGoogle(auth);
       const [signInWithFacebook, facebookUser] = useSignInWithFacebook(auth);
+      const [signInWithGithub, gitHubUser] = useSignInWithGithub(auth);
 
       const location = useLocation();
       let from = location.state?.from?.pathname || "/";
 
-      if(user || googleUser || facebookUser){
+      if(user || googleUser || facebookUser || gitHubUser){
           navigate(from)
       }
       if (loading || googleLoading) {
@@ -62,7 +63,7 @@ const Login = () => {
 
                                 <img onClick={()=>signInWithFacebook()} width={80} className='ms-4 pointer' src="https://seeklogo.com/images/F/facebook-icon-circle-logo-09F32F61FF-seeklogo.com.png" alt="" />
 
-                                <img width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
+                                <img onClick={()=>signInWithGithub()} width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
                             </div>
                     </div>
                    </form>
