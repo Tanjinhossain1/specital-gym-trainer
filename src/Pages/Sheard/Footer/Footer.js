@@ -4,6 +4,7 @@ import './Footer.css';
 
 
 const Footer = () => {
+    // use date for year then show the footer 
     const date = new Date();
     const year  = date.getFullYear();
     const navigate = useNavigate();

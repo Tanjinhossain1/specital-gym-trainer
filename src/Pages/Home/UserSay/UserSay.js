@@ -3,6 +3,7 @@ import { Card } from 'react-bootstrap';
 import './UserSay.css'
 
 const UserSay = () => {
+    // user review hear
     return (
         <div>
             <h1 className='text-center text-success mt-5'>What My Amazing Clients Say!</h1>

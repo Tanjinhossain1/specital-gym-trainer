@@ -4,3 +4,12 @@
     align-items: center;
     margin-bottom: 250px;
 }
+@media only screen and (max-width: 1200px) {
+    .about-container{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        align-items: center;
+        margin-bottom: 250px;
+    }
+   
+   }

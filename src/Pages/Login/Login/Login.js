@@ -8,27 +8,39 @@ import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.int';
 
 const Login = () => {
+    // using useRef 
     let emailRef = useRef('')
     const [eyeOpen, setEyeOpen] = useState(false);
+
+    // using SignIn With Email And Password
     const [
         signInWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useSignInWithEmailAndPassword(auth);
-    const [sendPasswordResetEmail, sending] = useSendPasswordResetEmail(auth);
+    
+    // using reset email password 
+    const [sendPasswordResetEmail, sending ] = useSendPasswordResetEmail(auth);
     const navigate = useNavigate();
+    // sign in with google 
     const [signInWithGoogle, googleUser, googleLoading] = useSignInWithGoogle(auth);
+    // sign with facebook 
     const [signInWithFacebook, facebookUser] = useSignInWithFacebook(auth);
+    // sign in with github
     const [signInWithGithub, gitHubUser] = useSignInWithGithub(auth);
 
+    // using location for user login then return him/her back page
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
 
+    // when any one method is working then navigate from user page
     if (user || googleUser || facebookUser || gitHubUser) {
         navigate(from)
     }
-    if (loading || googleLoading) {
+
+    // when user click login button then behind the create user show spinner 
+    if (loading || sending || googleLoading) {
         return (
             <div className='text-center spinner-container'>
                 <Spinner animation="border" variant="dark" />
@@ -36,7 +48,7 @@ const Login = () => {
         )
     }
 
-
+    // all input container form submit 
     const handleToSubmit = (event) => {
         event.preventDefault();
         const email = event.target.email.value;
@@ -45,6 +57,7 @@ const Login = () => {
         console.log(email, password)
     }
 
+    // password reset handler 
     const passwordReset = async () => {
         const email = emailRef.current.value;
         if (email) {

@@ -5,9 +5,11 @@ import { Navigate, useLocation } from 'react-router-dom';
 import auth from '../../firebase.int';
 
 const RequireAuth = ({children}) => {
-   const [user,loading] = useAuthState(auth)
+    // get the user detail from react-firebase-hook 
+   const [user,loading] = useAuthState(auth);
     let location = useLocation();
-    
+
+    // when user loading then show spinner 
     if (loading) {
         return (
             <div className='text-center spinner-container'>

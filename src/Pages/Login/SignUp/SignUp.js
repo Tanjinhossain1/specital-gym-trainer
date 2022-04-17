@@ -6,40 +6,52 @@ import auth from '../../../firebase.int';
 import { async } from '@firebase/util';
 import { Spinner } from 'react-bootstrap';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const SignUp = () => {
+    // this is password showing state 
     const [eyeOpen, setEyeOpen] = useState(false);
+    // this is also confirm-password showing state 
     const [confirmPasswordEeyOpen, setConfirmPasswordEeyOpen] = useState(false);
     const [agree, setAgree] = useState(false)
     const navigate = useNavigate();
+
+    // sign up the user email and password 
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+
+    // update the user profile like displayName 
     const [updateProfile, updating] = useUpdateProfile(auth);
+
+    // using user Email Verification
     const [sendEmailVerification] = useSendEmailVerification(auth);
 
     const [passwordError, setPasswordError] = useState('');
+    // sign in with google
     const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
+    // sign in with facebook 
     const [signInWithFacebook, facebookUser] = useSignInWithFacebook(auth);
+    // sign in with github 
     const [signInWithGithub, gitHubUser] = useSignInWithGithub(auth);
 
+    // when user have than go the home 
     if (user || googleUser || facebookUser || gitHubUser) {
         navigate('/home')
     }
 
-
+        // form handle to submit 
     const handleToSubmit = async (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
         const confirmPassword = event.target.confirmPassword.value;
+        // password or confirmPassword checked 
         if (password !== confirmPassword) {
             setPasswordError('Password Not Match');
             return;
@@ -49,6 +61,7 @@ const SignUp = () => {
         await sendEmailVerification();
     }
     
+    // when user loading then show spinner 
     if (loading || updating) {
         return (
             <div className='text-center spinner-container'>
@@ -62,7 +75,6 @@ const SignUp = () => {
 
             <div className='border p-3 mt-5 mx-auto  rounded-3 signup-container'>
                 <div className=''>
-                    <ToastContainer />
                     <form onSubmit={handleToSubmit}>
                         <div>
                             <h2 className='mb-5'>Create Account</h2>
@@ -80,7 +92,8 @@ const SignUp = () => {
                             {confirmPasswordEeyOpen ? <EyeIcon onClick={() => setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className="  field-icon" /> : <EyeOffIcon onClick={() => setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className='field-icon'></EyeOffIcon>}
 
                             <input className='mt-4' onClick={()=>setAgree(!agree)} type="checkbox" name="terms" id="" />
-                            <label htmlFor="terms">Allow All Condition</label>
+                            {agree ? <label className='text-success ms-2' htmlFor="terms">Allow Success</label>:<label className='text-danger ms-2' htmlFor="terms"> Allow All Condition</label>}
+                            
 
                             <p className='text-danger'> {passwordError}</p>
                             <p className='text-danger'> {error?.message.slice(22, 42)}</p>

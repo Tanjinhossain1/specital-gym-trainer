@@ -8,7 +8,10 @@ import auth from '../../../firebase.int';
 
 
 const Header = () => {
+        // get the user detail from react-firebase-hook 
     const [user] = useAuthState(auth);
+    
+    // log out handler 
     const logout = () => {
         signOut(auth);
     };

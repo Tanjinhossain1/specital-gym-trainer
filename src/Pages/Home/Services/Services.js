@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import './Services.css'
 const Services = () => {
     const navigate = useNavigate();
+    // there have four trainer services 
     return (
         <div>
             <h1 className='text-center text-primary mt-5'>Personal Online Trainer</h1>
