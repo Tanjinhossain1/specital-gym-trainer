@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
-import { useCreateUserWithEmailAndPassword, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSendEmailVerification, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.int';
 import { async } from '@firebase/util';
 import { Spinner } from 'react-bootstrap';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const SignUp = () => {
@@ -19,15 +21,18 @@ const SignUp = () => {
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
     const [updateProfile, updating] = useUpdateProfile(auth);
+    const [sendEmailVerification] = useSendEmailVerification(auth);
 
     const [passwordError, setPasswordError] = useState('');
     const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
     const [signInWithFacebook, facebookUser] = useSignInWithFacebook(auth);
-      const [signInWithGithub, gitHubUser] = useSignInWithGithub(auth);
+    const [signInWithGithub, gitHubUser] = useSignInWithGithub(auth);
 
-      if(user || googleUser || facebookUser || gitHubUser){
+    if (googleUser || facebookUser || gitHubUser) {
         navigate('/home')
     }
+
+
     const handleToSubmit = async (event) => {
         event.preventDefault();
         const name = event.target.name.value;
@@ -40,7 +45,13 @@ const SignUp = () => {
         }
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
+        await sendEmailVerification();
+        if (sendEmailVerification) {
+            toast("Send Email Verification");
+            setPasswordError('')
+        }
     }
+    
     if (loading || updating) {
         return (
             <div className='text-center spinner-container'>
@@ -48,12 +59,13 @@ const SignUp = () => {
             </div>
         )
     }
-    console.log(user)
+
     return (
         <div>
 
             <div className='border p-3 w-25 mt-5 mx-auto bg-light rounded-3'>
                 <div className=''>
+                    <ToastContainer />
                     <form onSubmit={handleToSubmit}>
                         <div>
                             <h2 className='mb-5'>Create Account</h2>
@@ -86,9 +98,9 @@ const SignUp = () => {
                                 <img onClick={() => signInWithGoogle()} width={100} className='rounded-pill pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY4fEq7Y5RS5LgBJpkLQ7SqiIVDImxmRQI2WFHHkr6WYPQEtDXPaueCbakGkixOD6xoLk&usqp=CAU" alt="" />
 
 
-                                <img onClick={()=>signInWithFacebook()} width={80} className='ms-4 pointer' src="https://seeklogo.com/images/F/facebook-icon-circle-logo-09F32F61FF-seeklogo.com.png" alt="" />
+                                <img onClick={() => signInWithFacebook()} width={80} className='ms-4 pointer' src="https://seeklogo.com/images/F/facebook-icon-circle-logo-09F32F61FF-seeklogo.com.png" alt="" />
 
-                                <img onClick={()=>signInWithGithub()} width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
+                                <img onClick={() => signInWithGithub()} width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
                             </div>
                         </div>
                     </form>
