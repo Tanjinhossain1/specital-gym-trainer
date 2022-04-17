@@ -8,8 +8,8 @@ const Services = () => {
         <div>
             <h1 className='text-center text-primary mt-5'>Personal Online Trainer</h1>
            <div className=''>
-           <CardGroup className='w-75 mx-auto card-group'>
-                <Card className='m-4'>
+           <CardGroup className='w-75 mx-auto card-group '>
+                <Card className='m-4 shadow-lg rounded-3'>
                     <Card.Img variant="top" src="https://gymgeek.com/wp-content/uploads/2015/12/man-and-woman-in-gym-triceps-extensions-700x465.jpg" />
                     <Card.Body>
                         <Card.Title>ACCOUNTABILITY</Card.Title>
@@ -23,7 +23,7 @@ const Services = () => {
                     </Card.Body>
                 </Card>
 
-                <Card className='m-4'>
+                <Card className='m-4 shadow-lg rounded-3'>
                     <Card.Img variant="top" src="https://www.eatthis.com/wp-content/uploads/sites/4/2020/01/man-weight-lifting-training-workout-gym.jpg?quality=82&strip=1" />
                     <Card.Body>
                         <Card.Title>FAST TRACK</Card.Title>
@@ -39,8 +39,8 @@ const Services = () => {
                 </Card>
 
             </CardGroup>
-            <CardGroup className='w-75 mx-auto'>
-                <Card className='m-4'>
+            <CardGroup className='w-75 mx-auto '>
+                <Card className='m-4 shadow-lg rounded-3'>
                     <Card.Img variant="top" src="https://blog.myfitnesspal.com/wp-content/uploads/2018/03/How-Your-Music-Influences-Your-Workout-752x472.jpg" />
                     <Card.Body>
                         <Card.Title >ULTIMATE 8 Month</Card.Title>
@@ -54,11 +54,11 @@ const Services = () => {
                        </div>
                 </Card>
 
-                <Card className='m-4'>
+                <Card className='m-4 shadow-lg rounded-3'>
                     <Card.Img variant="top" src="https://www.westend61.de/images/0000783991pw/group-of-people-in-gym-training-weight-lifting-HAPF01589.jpg" />
                     <Card.Body>
                         <Card.Title>6 Month Ultimate Life Transformation</Card.Title>
-                        <h5 className='text-danger'>$499<small>/Month</small></h5>LifeTransformCheckout
+                        <h5 className='text-danger'>$499<small>/Month</small></h5>
                         <Card.Text>
                             Do you Want the ultimate result? Do you want a 6 month package that you can sustain that will give you the healthy benefits you crave.Do you want to learn how to achieve the body of your dreams and keep it so come.
                         </Card.Text>
