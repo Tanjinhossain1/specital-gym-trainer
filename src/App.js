@@ -13,6 +13,7 @@ import Login from './Pages/Login/Login/Login';
 import RequireAuth from './Pages/RequireAuth/RequireAuth';
 import Blog from './Pages/Blog/Blog';
 import About from './Pages/About/About';
+import NotFound from './Pages/NotFound/NotFound';
 
 function App() {
   return (
@@ -47,7 +48,7 @@ function App() {
             <LifeTransformCheckout></LifeTransformCheckout>
           </RequireAuth>
         }></Route>
-
+  <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
 
       <Footer></Footer>
