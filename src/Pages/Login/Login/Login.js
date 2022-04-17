@@ -80,7 +80,7 @@ const Login = () => {
 
                     </form>
 
-                    <p className='text-center'>Lost your Password? <button onClick={passwordReset} className='btn btn-link'>Forgat Password</button></p>
+                    <p className='text-center'>Lost Your Password? <button onClick={passwordReset} className='btn btn-link'>Forgat Password</button></p>
 
                     <div className='d-flex '>
                         <hr className='w-100' />
