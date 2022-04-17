@@ -11,6 +11,8 @@ import LifeTransformCheckout from './Pages/Home/LifeTransformCheckout/LifeTransf
 import SignUp from './Pages/Login/SignUp/SignUp';
 import Login from './Pages/Login/Login/Login';
 import RequireAuth from './Pages/RequireAuth/RequireAuth';
+import Blog from './Pages/Blog/Blog';
+import About from './Pages/About/About';
 
 function App() {
   return (
@@ -19,28 +21,35 @@ function App() {
       <Routes>
         <Route path='/' element={<Home></Home>}></Route>
         <Route path='/home' element={<Home></Home>}></Route>
+        <Route path='/login' element={<Login></Login>}></Route>
+        <Route path='/signup' element={<SignUp></SignUp>}></Route>
+        <Route path='/blog' element={<Blog></Blog>}></Route>
+        <Route path='/about' element={<About></About>}></Route>
+
         <Route path='/accountAbilityCheckout' element={
           <RequireAuth>
             <AccountabilityCheckedOut></AccountabilityCheckedOut>
           </RequireAuth>
         }></Route>
+
         <Route path='/fastTrackDetail' element={
           <RequireAuth>
             <FastTrackDetail></FastTrackDetail>
           </RequireAuth>
         }></Route>
+
         <Route path='/ultimateDetail' element={<RequireAuth>
           <UltimateDetail></UltimateDetail>
         </RequireAuth>}></Route>
+
         <Route path='/lifeTransformCheckout' element={
           <RequireAuth>
             <LifeTransformCheckout></LifeTransformCheckout>
           </RequireAuth>
         }></Route>
-        <Route path='/login' element={<Login></Login>}></Route>
-        <Route path='/signup' element={<SignUp></SignUp>}></Route>
 
       </Routes>
+
       <Footer></Footer>
     </div>
   );
