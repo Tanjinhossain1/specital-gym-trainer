@@ -1,6 +1,6 @@
 import { async } from '@firebase/util';
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Spinner } from 'react-bootstrap';
 import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGithub, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -8,6 +8,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import auth from '../../../firebase.int';
 
 const Login = () => {
+    let emailRef = useRef('')
     const [eyeOpen, setEyeOpen] = useState(false);
     const [
         signInWithEmailAndPassword,
@@ -27,7 +28,7 @@ const Login = () => {
     if (user || googleUser || facebookUser || gitHubUser) {
         navigate(from)
     }
-    if (loading || sending || googleLoading) {
+    if (loading || googleLoading) {
         return (
             <div className='text-center spinner-container'>
                 <Spinner animation="border" variant="dark" />
@@ -44,9 +45,8 @@ const Login = () => {
         console.log(email, password)
     }
 
-    const passwordReset = async (event) => {
-        const email = event.target.email.value;
-
+    const passwordReset = async () => {
+        const email = emailRef.current.value;
         if (email) {
             await sendPasswordResetEmail(email);
             toast('Reset Password Sent')
@@ -55,7 +55,7 @@ const Login = () => {
         }
 
     }
-
+   
     return (
         <div>
             <div className='border p-3 w-25 mt-5 mx-auto bg-light rounded-3'>
@@ -64,7 +64,7 @@ const Login = () => {
                     <form onSubmit={handleToSubmit}>
                         <div>
                             <h2 className=''>Login</h2>
-                            <input className='w-100 px-2 py-2 border mt-4' type="email" name="email" id="" placeholder='Email' required />
+                            <input className='w-100 px-2 py-2 border mt-4' ref={emailRef} type="email" name="email" id="" placeholder='Email' required />
 
                             <input className='w-100 px-2 py-2 border mt-4' type={eyeOpen ? 'text' : "password"} name="password" id="" placeholder='Password' required />
 
@@ -80,7 +80,7 @@ const Login = () => {
 
                     </form>
 
-                    <p className='text-center'>Lost Your Password? <button onClick={passwordReset} className='btn btn-link'>Forgat Password</button></p>
+                   <p className='text-center'>Lost Your Password?  <button onClick={passwordReset} className='btn btn-link'>Forgat Password</button></p>
 
                     <div className='d-flex '>
                         <hr className='w-100' />
