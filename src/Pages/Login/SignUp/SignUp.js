@@ -44,7 +44,7 @@ const SignUp = () => {
         navigate('/home')
     }
 
-        // form handle to submit 
+    // form handle to submit 
     const handleToSubmit = async (event) => {
         event.preventDefault();
         const name = event.target.name.value;
@@ -60,7 +60,7 @@ const SignUp = () => {
         await updateProfile({ displayName: name });
         await sendEmailVerification();
     }
-    
+
     // when user loading then show spinner 
     if (loading || updating) {
         return (
@@ -91,13 +91,13 @@ const SignUp = () => {
                             <input className='w-100 px-2 py-2 border mt-4' type={confirmPasswordEeyOpen ? 'text' : "password"} name="confirmPassword" id="" placeholder='Confirm-Password' required />
                             {confirmPasswordEeyOpen ? <EyeIcon onClick={() => setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className="  field-icon" /> : <EyeOffIcon onClick={() => setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className='field-icon'></EyeOffIcon>}
 
-                            <input className='mt-4' onClick={()=>setAgree(!agree)} type="checkbox" name="terms" id="" />
-                            {agree ? <label className='text-success ms-2' htmlFor="terms">Allow Success</label>:<label className='text-danger ms-2' htmlFor="terms"> Allow All Condition</label>}
-                            
+                            <input className='mt-4' onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="" />
+                            {agree ? <label className='text-success ms-2' htmlFor="terms">Allow Success</label> : <label className='text-danger ms-2' htmlFor="terms"> Allow All Condition</label>}
+
 
                             <p className='text-danger'> {passwordError}</p>
                             <p className='text-danger'> {error?.message.slice(22, 42)}</p>
-                            <input  disabled={!agree} className=' rounded-pill w-100 py-2 border submit-button mt-4' type="submit" id="" value='Sign Up' />
+                            <input disabled={!agree} className={`rounded-pill w-100 py-2 border submit-button mt-4 ${agree ? 'submit-button' : 'submit-button-color'}`} type="submit" id="" value='Sign Up' />
 
                             <p className='mt-3 text-center'>Already Have An Account? <Link to='/login'>Login</Link></p>
 
