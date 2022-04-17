@@ -1,7 +1,7 @@
 import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
 import React, { useState } from 'react';
 import { Spinner } from 'react-bootstrap';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithFacebook, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.int';
 
@@ -15,10 +15,12 @@ const Login = () => {
       ] = useSignInWithEmailAndPassword(auth);
       const navigate = useNavigate();
       const [signInWithGoogle,googleUser,googleLoading] = useSignInWithGoogle(auth);
+      const [signInWithFacebook, facebookUser] = useSignInWithFacebook(auth);
+
       const location = useLocation();
       let from = location.state?.from?.pathname || "/";
 
-      if(user || googleUser){
+      if(user || googleUser || facebookUser){
           navigate(from)
       }
       if (loading || googleLoading) {
@@ -40,7 +42,7 @@ const Login = () => {
                 <div className=''>
                    <form onSubmit={handleToSubmit}>
                    <div>
-                        <h2 className=''>Create Account</h2>
+                        <h2 className=''>Login</h2>
                         <input className='w-100 px-2 py-2 border mt-4' type="email" name="email" id="" placeholder='Email' />
                         <input className='w-100 px-2 py-2 border mt-4' type={eyeOpen ?'text': "password"} name="password" id="" placeholder='Password' required />
                            {eyeOpen ?  <EyeIcon onClick={()=>setEyeOpen(!eyeOpen)} className="  field-icon" />: <EyeOffIcon onClick={()=>setEyeOpen(!eyeOpen)} className='field-icon'></EyeOffIcon> }
@@ -58,7 +60,7 @@ const Login = () => {
                             <div className='text-center'>
                                 <img onClick={()=>signInWithGoogle()} width={100} className='rounded-pill pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY4fEq7Y5RS5LgBJpkLQ7SqiIVDImxmRQI2WFHHkr6WYPQEtDXPaueCbakGkixOD6xoLk&usqp=CAU" alt="" />
 
-                                <img width={80} className='ms-4 pointer' src="https://seeklogo.com/images/F/facebook-icon-circle-logo-09F32F61FF-seeklogo.com.png" alt="" />
+                                <img onClick={()=>signInWithFacebook()} width={80} className='ms-4 pointer' src="https://seeklogo.com/images/F/facebook-icon-circle-logo-09F32F61FF-seeklogo.com.png" alt="" />
 
                                 <img width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
                             </div>
