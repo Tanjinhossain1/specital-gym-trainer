@@ -1,13 +1,15 @@
-.submit-button{
+.submit-button {
     background-color: rgb(71, 208, 71);
     color: white;
     font-weight: 600;
     font-size: 20px;
 }
-.spinner-container{
+
+.spinner-container {
     margin-bottom: 350px;
     margin-top: 200px;
 }
+
 .field-icon {
     float: right;
     margin-left: -7px;
@@ -17,4 +19,41 @@
     z-index: 2;
     height: 20px;
     width: 20px;
-  }
+}
+
+@media only screen and (max-width: 370px) {
+    .signup-container {
+        width: 300px;
+        background-color: rgb(177, 195, 228);
+    }
+}
+
+@media only screen and (min-width: 371px) and (max-width: 600px) {
+    .signup-container {
+        width: 350px;
+        background-color: rgb(169, 210, 211);
+    }
+
+  
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1210px) {
+    .signup-container {
+        width: 600px;
+        background-color: rgb(230, 229, 179);
+    }
+}
+
+@media only screen and (min-width: 1210px) and (max-width: 1910px) {
+    .signup-container {
+        width: 600px;
+        background-color: rgb(245, 240, 240);
+    }
+}
+
+@media only screen and (min-width: 1911px) and (max-width: 3000px) {
+    .signup-container {
+        width: 700px;
+        background-color: rgb(245, 240, 240);
+    }
+}

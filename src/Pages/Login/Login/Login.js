@@ -58,7 +58,7 @@ const Login = () => {
    
     return (
         <div>
-            <div className='border p-3 w-25 mt-5 mx-auto bg-light rounded-3'>
+            <div className='border p-3 mt-5 mx-auto  rounded-3 signup-container '>
                 <ToastContainer></ToastContainer>
                 <div className=''>
                     <form onSubmit={handleToSubmit}>

@@ -12,7 +12,8 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = () => {
     const [eyeOpen, setEyeOpen] = useState(false);
-    const [confirmPasswordEeyOpen, setConfirmPasswordEeyOpen] = useState(false)
+    const [confirmPasswordEeyOpen, setConfirmPasswordEeyOpen] = useState(false);
+    const [agree, setAgree] = useState(false)
     const navigate = useNavigate();
     const [
         createUserWithEmailAndPassword,
@@ -59,7 +60,7 @@ const SignUp = () => {
     return (
         <div>
 
-            <div className='border p-3 w-25 mt-5 mx-auto bg-light rounded-3'>
+            <div className='border p-3 mt-5 mx-auto  rounded-3 signup-container'>
                 <div className=''>
                     <ToastContainer />
                     <form onSubmit={handleToSubmit}>
@@ -78,10 +79,12 @@ const SignUp = () => {
                             <input className='w-100 px-2 py-2 border mt-4' type={confirmPasswordEeyOpen ? 'text' : "password"} name="confirmPassword" id="" placeholder='Confirm-Password' required />
                             {confirmPasswordEeyOpen ? <EyeIcon onClick={() => setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className="  field-icon" /> : <EyeOffIcon onClick={() => setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className='field-icon'></EyeOffIcon>}
 
+                            <input className='mt-4' onClick={()=>setAgree(!agree)} type="checkbox" name="terms" id="" />
+                            <label htmlFor="terms">Allow All Condition</label>
 
                             <p className='text-danger'> {passwordError}</p>
                             <p className='text-danger'> {error?.message.slice(22, 42)}</p>
-                            <input className=' rounded-pill w-100 py-2 border submit-button mt-4' type="submit" id="" value='Sign Up' />
+                            <input  disabled={!agree} className=' rounded-pill w-100 py-2 border submit-button mt-4' type="submit" id="" value='Sign Up' />
 
                             <p className='mt-3 text-center'>Already Have An Account? <Link to='/login'>Login</Link></p>
 
@@ -90,7 +93,7 @@ const SignUp = () => {
                                 <p className='mx-3'>or</p>
                                 <hr className='w-100' />
                             </div>
-                            <div className='text-center'>
+                            <div className='text-center '>
                                 <img onClick={() => signInWithGoogle()} width={100} className='rounded-pill pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY4fEq7Y5RS5LgBJpkLQ7SqiIVDImxmRQI2WFHHkr6WYPQEtDXPaueCbakGkixOD6xoLk&usqp=CAU" alt="" />
 
 

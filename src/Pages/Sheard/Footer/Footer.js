@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Footer.css';
 
 
 const Footer = () => {
     const date = new Date();
-    const year  = date.getFullYear()
+    const year  = date.getFullYear();
+    const navigate = useNavigate();
 
     return (
         <div>
@@ -19,8 +21,8 @@ const Footer = () => {
                 </div>
                 <div>
                     <h4>Company</h4>
-                    <p className='mb-2 mt-4 text-decoration-underline pointer'>About</p>
-                    <p className='pointer text-decoration-underline'>Blog</p>
+                    <p onClick={()=>navigate('/about')} className='mb-2 mt-4 text-decoration-underline pointer'>About</p>
+                    <p onClick={()=>navigate('/blog')}  className='pointer text-decoration-underline'>Blog</p>
                 </div>
                 <div>
                     <h4 className=''>Support</h4>

@@ -5,4 +5,16 @@
         grid-template-columns: repeat(1, 1fr);
     }
    }
- 
+   .card-left:hover {
+    border: 3px dotted blue;
+    color: orange;
+    background: #fff;
+    transform: skew(5deg);
+  }
+   .card-right:hover {
+    border: 3px dotted #ff7a59;
+    color: #ff7a59;
+    background: #fff;
+    transform: skew(-5deg);
+  }
+  

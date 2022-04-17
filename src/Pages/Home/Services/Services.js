@@ -9,7 +9,7 @@ const Services = () => {
             <h1 className='text-center text-primary mt-5'>Personal Online Trainer</h1>
            <div className=''>
            <CardGroup className='w-75 mx-auto card-group '>
-                <Card className='m-4 shadow-lg rounded-3'>
+                <Card className='m-4 shadow-lg rounded-3 card-left'>
                     <Card.Img variant="top" src="https://gymgeek.com/wp-content/uploads/2015/12/man-and-woman-in-gym-triceps-extensions-700x465.jpg" />
                     <Card.Body>
                         <Card.Title>ACCOUNTABILITY</Card.Title>
@@ -23,7 +23,7 @@ const Services = () => {
                     </Card.Body>
                 </Card>
 
-                <Card className='m-4 shadow-lg rounded-3'>
+                <Card className='m-4 shadow-lg rounded-3 card-right'>
                     <Card.Img variant="top" src="https://www.eatthis.com/wp-content/uploads/sites/4/2020/01/man-weight-lifting-training-workout-gym.jpg?quality=82&strip=1" />
                     <Card.Body>
                         <Card.Title>FAST TRACK</Card.Title>
@@ -32,7 +32,7 @@ const Services = () => {
                             If you strive for real results and want to receive the guidance you need to set yourself up for success.then this is the package for you You'll be working with me directly and checking in twice a week.We'll fast track your progress and make necessary changes to ensure your commit.
                         </Card.Text>
                     </Card.Body>
-                    <div className='text-center'>
+                    <div className='text-center '>
                        <button onClick={()=>navigate('/fastTrackDetail')} className='py-2 px-5 border rounded-2 bg-info mb-3'>Checked</button>
                        </div>
 
@@ -40,7 +40,7 @@ const Services = () => {
 
             </CardGroup>
             <CardGroup className='w-75 mx-auto '>
-                <Card className='m-4 shadow-lg rounded-3'>
+                <Card className='m-4 shadow-lg rounded-3  card-right'>
                     <Card.Img variant="top" src="https://blog.myfitnesspal.com/wp-content/uploads/2018/03/How-Your-Music-Influences-Your-Workout-752x472.jpg" />
                     <Card.Body>
                         <Card.Title >ULTIMATE 8 Month</Card.Title>
@@ -54,7 +54,7 @@ const Services = () => {
                        </div>
                 </Card>
 
-                <Card className='m-4 shadow-lg rounded-3'>
+                <Card className='m-4 shadow-lg rounded-3 card-left'>
                     <Card.Img variant="top" src="https://www.westend61.de/images/0000783991pw/group-of-people-in-gym-training-weight-lifting-HAPF01589.jpg" />
                     <Card.Body>
                         <Card.Title>6 Month Ultimate Life Transformation</Card.Title>
