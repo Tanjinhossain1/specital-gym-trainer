@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
-import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.int';
 import { async } from '@firebase/util';
 import { Spinner } from 'react-bootstrap';
@@ -21,7 +21,9 @@ const SignUp = () => {
     const [updateProfile, updating] = useUpdateProfile(auth);
 
     const [passwordError, setPasswordError] = useState('');
-    if (user) {
+    const [signInWithGoogle, googleUser] = useSignInWithGoogle(auth);
+
+    if (user || googleUser) {
         navigate('/home')
     }
     const handleToSubmit = async (event) => {
@@ -58,13 +60,13 @@ const SignUp = () => {
                             <input className='w-100 px-2 py-2 border mt-4' type="email" name="email" id="" placeholder='Email' required />
 
 
-                            <input className='w-100 px-2 py-2 border mt-4' type={eyeOpen ?'text': "password"} name="password" id="" placeholder='Password' required />
-                           {eyeOpen ?  <EyeIcon onClick={()=>setEyeOpen(!eyeOpen)} className="  field-icon" />: <EyeOffIcon onClick={()=>setEyeOpen(!eyeOpen)} className='field-icon'></EyeOffIcon> }
+                            <input className='w-100 px-2 py-2 border mt-4' type={eyeOpen ? 'text' : "password"} name="password" id="" placeholder='Password' required />
+                            {eyeOpen ? <EyeIcon onClick={() => setEyeOpen(!eyeOpen)} className="  field-icon" /> : <EyeOffIcon onClick={() => setEyeOpen(!eyeOpen)} className='field-icon'></EyeOffIcon>}
 
 
 
-                            <input className='w-100 px-2 py-2 border mt-4' type={confirmPasswordEeyOpen ?'text': "password"} name="confirmPassword" id="" placeholder='Confirm-Password' required />
-                            {confirmPasswordEeyOpen ?  <EyeIcon onClick={()=>setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className="  field-icon" />: <EyeOffIcon onClick={()=>setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className='field-icon'></EyeOffIcon> }
+                            <input className='w-100 px-2 py-2 border mt-4' type={confirmPasswordEeyOpen ? 'text' : "password"} name="confirmPassword" id="" placeholder='Confirm-Password' required />
+                            {confirmPasswordEeyOpen ? <EyeIcon onClick={() => setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className="  field-icon" /> : <EyeOffIcon onClick={() => setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className='field-icon'></EyeOffIcon>}
 
 
                             <p className='text-danger'> {passwordError}</p>
@@ -79,7 +81,9 @@ const SignUp = () => {
                                 <hr className='w-100' />
                             </div>
                             <div className='text-center'>
-                                <img width={100} className='rounded-pill pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY4fEq7Y5RS5LgBJpkLQ7SqiIVDImxmRQI2WFHHkr6WYPQEtDXPaueCbakGkixOD6xoLk&usqp=CAU" alt="" />
+                                <img onClick={() => signInWithGoogle()} width={100} className='rounded-pill pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQY4fEq7Y5RS5LgBJpkLQ7SqiIVDImxmRQI2WFHHkr6WYPQEtDXPaueCbakGkixOD6xoLk&usqp=CAU" alt="" />
+
+
                                 <img width={80} className='ms-4 pointer' src="https://seeklogo.com/images/F/facebook-icon-circle-logo-09F32F61FF-seeklogo.com.png" alt="" />
 
                                 <img width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
