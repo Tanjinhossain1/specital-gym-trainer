@@ -5,9 +5,12 @@ import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-fireb
 import auth from '../../../firebase.int';
 import { async } from '@firebase/util';
 import { Spinner } from 'react-bootstrap';
+import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
+
 
 const SignUp = () => {
-
+    const [eyeOpen, setEyeOpen] = useState(false);
+    const [confirmPasswordEeyOpen, setConfirmPasswordEeyOpen] = useState(false)
     const navigate = useNavigate();
     const [
         createUserWithEmailAndPassword,
@@ -55,10 +58,14 @@ const SignUp = () => {
                             <input className='w-100 px-2 py-2 border mt-4' type="email" name="email" id="" placeholder='Email' required />
 
 
-                            <input className='w-100 px-2 py-2 border mt-4' type="password" name="password" id="" placeholder='Password' required />
+                            <input className='w-100 px-2 py-2 border mt-4' type={eyeOpen ?'text': "password"} name="password" id="" placeholder='Password' required />
+                           {eyeOpen ?  <EyeIcon onClick={()=>setEyeOpen(!eyeOpen)} className="  field-icon" />: <EyeOffIcon onClick={()=>setEyeOpen(!eyeOpen)} className='field-icon'></EyeOffIcon> }
 
 
-                            <input className='w-100 px-2 py-2 border mt-4' type="password" name="confirmPassword" id="" placeholder='Confirm-Password' required />
+
+                            <input className='w-100 px-2 py-2 border mt-4' type={confirmPasswordEeyOpen ?'text': "password"} name="confirmPassword" id="" placeholder='Confirm-Password' required />
+                            {confirmPasswordEeyOpen ?  <EyeIcon onClick={()=>setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className="  field-icon" />: <EyeOffIcon onClick={()=>setConfirmPasswordEeyOpen(!confirmPasswordEeyOpen)} className='field-icon'></EyeOffIcon> }
+
 
                             <p className='text-danger'> {passwordError}</p>
                             <p className='text-danger'> {error?.message.slice(22, 42)}</p>
