@@ -28,7 +28,7 @@ const SignUp = () => {
     const [signInWithFacebook, facebookUser] = useSignInWithFacebook(auth);
     const [signInWithGithub, gitHubUser] = useSignInWithGithub(auth);
 
-    if (googleUser || facebookUser || gitHubUser) {
+    if (user || googleUser || facebookUser || gitHubUser) {
         navigate('/home')
     }
 
@@ -46,10 +46,6 @@ const SignUp = () => {
         await createUserWithEmailAndPassword(email, password);
         await updateProfile({ displayName: name });
         await sendEmailVerification();
-        if (sendEmailVerification) {
-            toast("Send Email Verification");
-            setPasswordError('')
-        }
     }
     
     if (loading || updating) {
