@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './SignUp.css';
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.int';
+import { async } from '@firebase/util';
 
 const SignUp = () => {
+   
     const navigate = useNavigate();
     const [
         createUserWithEmailAndPassword,
@@ -12,23 +14,26 @@ const SignUp = () => {
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth);
+    const [updateProfile, updating] = useUpdateProfile(auth);
+
     const [passwordError, setPasswordError] = useState('');
     if (user) {
         navigate('/home')
     }
-    const handleToSubmit = (event) => {
+    const handleToSubmit = async (event) => {
         event.preventDefault();
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        const confirmPassword = event.target.confirm - password.value;
+        const confirmPassword = event.target.confirmPassword.value;
         if (password !== confirmPassword) {
             setPasswordError('Password Not Match');
             return;
         }
-        createUserWithEmailAndPassword(email, password)
-
+       await createUserWithEmailAndPassword(email, password);
+       await updateProfile({ displayName: name });
     }
+    console.log(user)
     return (
         <div>
             <div className='border p-3 w-25 mt-5 mx-auto bg-light rounded-3'>
@@ -36,15 +41,16 @@ const SignUp = () => {
                     <form onSubmit={handleToSubmit}>
                         <div>
                             <h2 className='mb-5'>Create Account</h2>
-                            <input className='w-100 py-2 border' type="text" name="name" id="" placeholder='Name' />
+                            <input className='w-100 py-2 px-2 border' type="text" name="name" id="" placeholder='Name' required/>
 
-                            <input className='w-100 py-2 border mt-4' type="email" name="email" id="" placeholder='Email' />
-
-
-                            <input className='w-100 py-2 border mt-4' type="password" name="password" id="" placeholder='Password' />
+                            <input className='w-100 px-2 py-2 border mt-4' type="email" name="email" id="" placeholder='Email' required/>
 
 
-                            <input className='w-100 py-2 border mt-4' type="password" name="confirm-password" id="" placeholder='Confirm-Password' />
+                            <input className='w-100 px-2 py-2 border mt-4' type="password" name="password" id="" placeholder='Password' required/>
+
+
+                            <input className='w-100 px-2 py-2 border mt-4' type="password" name="confirmPassword" id="" placeholder='Confirm-Password' required/>
+
                             <p className='text-danger'> {passwordError}</p>
                             <p className='text-danger'> {error?.message.slice(22, 42)}</p>
                             <input className=' rounded-pill w-100 py-2 border submit-button mt-4' type="submit" id="" value='Sign Up' />
