@@ -1,18 +1,49 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { EyeIcon, EyeOffIcon } from '@heroicons/react/solid';
+import React, { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { Link, useNavigate } from 'react-router-dom';
+import auth from '../../../firebase.int';
 
 const Login = () => {
+    const [eyeOpen, setEyeOpen] = useState(false);
+    const [
+        signInWithEmailAndPassword,
+        user,
+        loading,
+        error,
+      ] = useSignInWithEmailAndPassword(auth);
+      const navigate = useNavigate();
+      
+      if(user){
+          navigate('/home')
+      }
+      if (loading) {
+        return (
+            <div className='text-center spinner-container'>
+                <Spinner animation="border" variant="dark" />
+            </div>
+        )
+    }
+      const handleToSubmit = (event) =>{
+          event.preventDefault();
+          const email = event.target.email.value;
+          const password = event.target.password.value;
+          signInWithEmailAndPassword(email,password)
+      }
     return (
         <div>
             <div className='border p-3 w-25 mt-5 mx-auto bg-light rounded-3'>
                 <div className=''>
-                    <div>
+                   <form onSubmit={handleToSubmit}>
+                   <div>
                         <h2 className=''>Create Account</h2>
                         <input className='w-100 py-2 border mt-4' type="email" name="email" id="" placeholder='Email' />
+                        <input className='w-100 px-2 py-2 border mt-4' type={eyeOpen ?'text': "password"} name="password" id="" placeholder='Password' required />
+                           {eyeOpen ?  <EyeIcon onClick={()=>setEyeOpen(!eyeOpen)} className="  field-icon" />: <EyeOffIcon onClick={()=>setEyeOpen(!eyeOpen)} className='field-icon'></EyeOffIcon> }
 
-                        <input className='w-100 py-2 border mt-4' type="password" name="password" id="" placeholder='Password' />
-
-                        <input className=' rounded-pill w-100 py-2 border submit-button mt-4' type="submit"  id="" value='Sign Up' />
+                           <p className='text-danger'> {error?.message.slice(22, 42)}</p>
+                        <input className=' rounded-pill w-100 py-2 border submit-button mt-4' type="submit"  id="" value='Login' />
 
                             <p className='mt-3 text-center'>Don't Have An Account? <Link to='/signup'>Create New Account</Link></p>
 
@@ -28,6 +59,7 @@ const Login = () => {
                                 <img width={100} className='ms-4 rounded-pill' src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="" />
                             </div>
                     </div>
+                   </form>
                 </div>
             </div>
         </div>
